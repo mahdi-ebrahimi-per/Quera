@@ -5,7 +5,7 @@
 import string, hashlib
 
 def nationalCode_check(Code):
-    if len(Code) < 10 :
+    if len(str(Code)) < 10 :
         raise ValueError('Input Code incorrect')
     try:
         num = list(map(int, list(Code)))[0:9]
@@ -68,7 +68,17 @@ class Account:
 
         #username
         if len(username.split('_')) == 2:
-            self.username = username 
+            splited_userName = username.split('_')
+            name_is_english = True
+
+            for part in splited_userName:
+                for letter in part:
+                    if letter not in string.ascii_letters:
+                        name_is_english = False
+
+            if name_is_english:
+                self.username = username 
+
         else: 
             raise ValueError('invalid username')
 
@@ -126,4 +136,7 @@ def welcome(user):
 @verify_change_password
 def change_password(user, old_pass, new_pass):
     return ("your password is changed successfully.")
+
+
+ins = Account("Mahdi_ebrahimi", "mahdi", '0200616791', "09129729277", 'mahdiebi@gmail.com')
 
