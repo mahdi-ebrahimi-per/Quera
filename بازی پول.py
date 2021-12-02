@@ -83,7 +83,10 @@ class Account:
             raise ValueError('invalid username')
 
         #password
-        if len(password) >= 8 and set(string.ascii_uppercase).intersection(password): 
+        if (len(password) >= 8 
+        and len(set(string.ascii_uppercase).intersection(password)) >= 1
+        and len(set)
+        ) : 
            self.password = hashlib.sha256(password.encode('utf-8')).hexdigest()
 
         #user_id
